@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel | Recanto 7, café e cia</title>
+<meta name="theme-color" content="#4B2D17">
+<link rel="icon" href="%%LOGO_SRC%%">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&display=swap">
+%%CONFIG_TAG%%
+%%EMBED_TAG%%
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #F3E7D8;
+  --card: #FBF4EA;
+  --ink: #3A2314;
+  --muted: #674A36;
+  --line: rgba(58, 35, 20, .22);
+  --yellow: #F2BE3B;
+  --btn-bg: #F2BE3B;
+  --btn-ink: #3A2314;
+  --ghost: #3A2314;
+  --brown: #4B2D17;
+  --danger: #A3321F;
+  --ok: #2E7D4F;
+  --focus: #3A2314;
+  --field: #FFFFFF;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #25160C; --card: #33200F; --ink: #F3E7D8; --muted: #D0B89D;
+    --line: rgba(243, 231, 216, .26); --btn-ink: #2E1B0E; --ghost: #F3E7D8;
+    --danger: #F19A8A; --ok: #7CC79B; --focus: #F2BE3B; --field: #25160C;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #25160C; --card: #33200F; --ink: #F3E7D8; --muted: #D0B89D;
+  --line: rgba(243, 231, 216, .26); --btn-ink: #2E1B0E; --ghost: #F3E7D8;
+  --danger: #F19A8A; --ok: #7CC79B; --focus: #F2BE3B; --field: #25160C;
+}
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 1.0625rem; line-height: 1.55; }
+body.has-savebar { padding-bottom: 6.5rem; }
+h1, h2, h3 { font-family: "Young Serif", Georgia, serif; font-weight: 400; line-height: 1.15; margin: 0; letter-spacing: -.01em; }
+h1 { font-size: 1.9rem; } h2 { font-size: 1.5rem; } h3 { font-size: 1.15rem; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
+.wrap { width: min(1040px, 100% - 2rem); margin-inline: auto; }
+.muted { color: var(--muted); }
+.sr-file { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.sr-file:focus-visible + label { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+.banner { background: var(--yellow); color: #3A2314; text-align: center; padding: .55rem 1rem; font-weight: 600; font-size: .95rem; }
+.top { background: var(--brown); color: #F7E6CC; }
+.topin { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-block: .75rem; }
+.brand { display: flex; align-items: center; gap: .75rem; }
+.brand img { width: 40px; height: 40px; border-radius: 9px; display: block; }
+.brand b { display: block; font-family: "Young Serif", Georgia, serif; font-weight: 400; font-size: 1.15rem; line-height: 1.1; }
+.brand span { font-size: .88rem; color: #DDC3A0; }
+.userbox { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; font-size: .92rem; }
+.userbox #user-email { color: #DDC3A0; max-width: 16rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.top .btn-ghost { border-color: #F7E6CC; color: #F7E6CC; }
+.top .btn-ghost:hover { background: #F7E6CC; color: #4B2D17; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; min-height: 48px; padding: .65rem 1.3rem; border-radius: 10px; border: 2px solid transparent; font: 600 1rem/1.2 "Figtree", system-ui, sans-serif; text-decoration: none; cursor: pointer; transition: filter .15s, background-color .15s, color .15s; }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+.btn-primary { background: var(--btn-bg); color: var(--btn-ink); }
+.btn-primary:not(:disabled):hover { filter: brightness(1.07); }
+.btn-ghost { background: transparent; border-color: var(--ghost); color: var(--ghost); }
+.btn-ghost:not(:disabled):hover { background: var(--ghost); color: var(--bg); }
+.btn-danger { background: transparent; border-color: var(--danger); color: var(--danger); }
+.btn-danger:hover { background: var(--danger); color: #fff; }
+.btn-sm { min-height: 40px; padding: .4rem .9rem; font-size: .92rem; }
+.btn-block { width: 100%; }
+.linkbtn { background: none; border: 0; padding: .5rem 0; color: var(--ink); font: 600 1rem "Figtree", sans-serif; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--yellow); text-decoration-thickness: 2px; cursor: pointer; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem; }
+.auth { max-width: 26rem; margin: 2.5rem auto; display: grid; gap: 1rem; }
+.center { text-align: center; padding: 4rem 0; display: grid; gap: 1rem; justify-items: center; }
+.field { display: grid; gap: .35rem; }
+.field > span:first-child { font-weight: 600; font-size: .95rem; }
+.field small { color: var(--muted); font-size: .88rem; }
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="time"], select, textarea {
+  width: 100%; min-height: 48px; padding: .6rem .8rem; border-radius: 10px; border: 2px solid var(--line); background: var(--field); color: var(--ink); font: inherit;
+}
+textarea { min-height: 110px; resize: vertical; }
+input:focus, select:focus, textarea:focus { border-color: var(--ink); outline: none; }
+.pw { position: relative; display: block; }
+.pw input { padding-right: 5.5rem; }
+.pw-toggle { position: absolute; right: .4rem; top: 50%; transform: translateY(-50%); border: 0; background: none; color: var(--ink); font: 600 .9rem "Figtree", sans-serif; text-decoration: underline; cursor: pointer; padding: .5rem; }
+.msg { min-height: 1.4em; font-size: .95rem; }
+.msg.err { color: var(--danger); } .msg.ok { color: var(--ok); }
+
+.spinner { width: 30px; height: 30px; border-radius: 50%; border: 4px solid var(--line); border-top-color: var(--ink); animation: spin .9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.tabs { display: flex; gap: .4rem; overflow-x: auto; padding: 1rem 0 .25rem; scrollbar-width: thin; }
+.tab { flex: none; min-height: 46px; padding: .55rem 1rem; border-radius: 999px; border: 2px solid var(--line); background: transparent; color: var(--ink); font: 600 .98rem "Figtree", sans-serif; cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--brown); border-color: var(--brown); color: #F7E6CC; }
+.pane { padding: 1rem 0 2rem; display: grid; gap: 1.5rem; }
+.pane-head { display: grid; gap: .35rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+.filebtn { display: inline-block; position: relative; }
+.filebtn label { cursor: pointer; }
+
+.media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+.mcard { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: grid; align-content: start; }
+.mcard .body { padding: .9rem; display: grid; gap: .7rem; }
+.mcard .row { display: flex; gap: .4rem; flex-wrap: wrap; }
+.thumb { position: relative; aspect-ratio: 4 / 3; background: var(--line); }
+.thumb img, .thumb video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.badge { position: absolute; left: .6rem; top: .6rem; background: var(--brown); color: #F7E6CC; font-size: .8rem; font-weight: 600; padding: .2rem .6rem; border-radius: 999px; }
+.pos { position: absolute; right: .6rem; top: .6rem; background: rgba(255,255,255,.9); color: #3A2314; font-weight: 600; font-size: .85rem; padding: .15rem .55rem; border-radius: 999px; }
+.pending { place-items: center; text-align: center; padding: 2rem 1rem; gap: .8rem; }
+.empty { padding: 2rem 1rem; text-align: center; color: var(--muted); border: 2px dashed var(--line); border-radius: 14px; grid-column: 1 / -1; }
+.single { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .single { grid-template-columns: 240px 1fr; align-items: start; } }
+.single .thumb { border-radius: 12px; overflow: hidden; }
+.logo-prev { display: flex; gap: 1rem; flex-wrap: wrap; }
+.logo-prev div { border-radius: 14px; padding: 1.2rem; display: grid; place-items: center; border: 1px solid var(--line); }
+.logo-prev img { width: 140px; height: 140px; object-fit: contain; border-radius: 12px; display: block; }
+
+.hrow { display: grid; gap: .6rem; padding: .9rem 0; border-bottom: 1px solid var(--line); }
+.hrow:first-child { border-top: 1px solid var(--line); }
+.chk { display: flex; align-items: center; gap: .7rem; font-weight: 600; min-height: 44px; }
+.chk input { width: 24px; height: 24px; accent-color: var(--brown); }
+.slots { display: grid; gap: .5rem; }
+.slot { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.slot input[type="time"] { width: 8.5rem; }
+.closed { color: var(--muted); }
+@media (min-width: 720px) { .hrow { grid-template-columns: 13rem 1fr; align-items: start; } }
+
+.steps { margin: 0; padding-left: 1.2rem; display: grid; gap: .4rem; }
+
+.savebar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: var(--card); border-top: 1px solid var(--line); padding: .7rem 1rem calc(.7rem + env(safe-area-inset-bottom)); box-shadow: 0 -6px 20px rgba(0,0,0,.08); }
+.savein { width: min(1040px, 100%); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; }
+#save-status { font-weight: 600; font-size: .95rem; }
+#save-status.dirty { color: var(--danger); } #save-status.ok { color: var(--ok); }
+.savein .actions { margin-left: auto; }
+
+#toasts { position: fixed; left: 50%; transform: translateX(-50%); bottom: 6rem; z-index: 60; display: grid; gap: .5rem; width: min(30rem, 92vw); pointer-events: none; }
+.toast { background: var(--brown); color: #F7E6CC; padding: .8rem 1rem; border-radius: 12px; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,.25); transition: opacity .5s, transform .5s; }
+.toast.ok { border-left: 6px solid #7CC79B; } .toast.err { border-left: 6px solid #F19A8A; }
+.toast.out { opacity: 0; transform: translateY(8px); }
+
+.modal { position: fixed; inset: 0; z-index: 80; background: rgba(20, 10, 4, .6); display: grid; place-items: center; padding: 1rem; }
+.modal .card { max-width: 26rem; width: 100%; display: grid; gap: 1rem; }
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 3s; } .toast { transition: none; } }
+</style>
+</head>
+<body>
+<div id="demo-banner" class="banner" hidden>Modo demonstração: nada é salvo de verdade. Entre com qualquer e-mail e senha para experimentar o painel.</div>
+
+<header class="top">
+  <div class="wrap topin">
+    <div class="brand">
+      <img src="%%LOGO_SRC%%" id="top-logo" alt="" width="40" height="40">
+      <div><b>Painel do Recanto 7</b><span>Gerencie a sua página</span></div>
+    </div>
+    <div class="userbox" id="userbox" hidden>
+      <span id="user-email"></span>
+      <a class="btn btn-ghost btn-sm" id="link-site" href="../" target="_blank" rel="noopener">Ver o site</a>
+      <button class="btn btn-ghost btn-sm" id="btn-logout" type="button">Sair</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section data-screen="loading" class="center" aria-live="polite">
+    <div class="spinner" aria-hidden="true"></div><p>Carregando…</p>
+  </section>
+
+  <section data-screen="error" class="card auth" hidden>
+    <h1>Não foi possível abrir o painel</h1>
+    <p id="error-text" class="muted">Verifique a sua conexão e tente de novo.</p>
+    <button class="btn btn-primary" type="button" id="btn-retry">Tentar novamente</button>
+  </section>
+
+  <form data-screen="login" id="f-login" class="card auth" novalidate hidden>
+    <h1>Entrar no painel</h1>
+    <p class="muted">Acesso exclusivo do administrador da página.</p>
+    <label class="field"><span>E-mail</span><input type="email" id="in-email" autocomplete="username" inputmode="email" required></label>
+    <label class="field"><span>Senha</span>
+      <span class="pw"><input type="password" id="in-pass" autocomplete="current-password" required><button type="button" class="pw-toggle" data-toggle="in-pass" aria-label="Mostrar senha">Mostrar</button></span>
+    </label>
+    <p class="msg" id="login-msg" role="alert"></p>
+    <button class="btn btn-primary btn-block" type="submit" id="btn-login">Entrar</button>
+    <button class="linkbtn" type="button" id="go-forgot">Esqueci minha senha</button>
+  </form>
+
+  <form data-screen="forgot" id="f-forgot" class="card auth" novalidate hidden>
+    <h1>Recuperar senha</h1>
+    <p class="muted">Informe o e-mail do administrador. Enviaremos um link para criar uma nova senha.</p>
+    <label class="field"><span>E-mail</span><input type="email" id="fg-email" autocomplete="username" inputmode="email" required></label>
+    <p class="msg" id="forgot-msg" role="status"></p>
+    <button class="btn btn-primary btn-block" type="submit" id="btn-forgot">Enviar link</button>
+    <button class="linkbtn" type="button" id="back-login">Voltar para o login</button>
+  </form>
+
+  <form data-screen="recovery" id="f-recovery" class="card auth" novalidate hidden>
+    <h1>Criar nova senha</h1>
+    <p class="muted">Escolha uma senha com pelo menos 8 caracteres.</p>
+    <label class="field"><span>Nova senha</span>
+      <span class="pw"><input type="password" id="rc-pass" autocomplete="new-password" required><button type="button" class="pw-toggle" data-toggle="rc-pass" aria-label="Mostrar senha">Mostrar</button></span>
+    </label>
+    <label class="field"><span>Repita a nova senha</span><input type="password" id="rc-pass2" autocomplete="new-password" required></label>
+    <p class="msg" id="recovery-msg" role="alert"></p>
+    <button class="btn btn-primary btn-block" type="submit" id="btn-recovery">Salvar nova senha</button>
+  </form>
+
+  <section data-screen="app" id="s-app" hidden>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Áreas do painel"></div>
+    <div class="pane" id="pane-media" role="tabpanel" hidden></div>
+    <div class="pane" id="pane-logo" role="tabpanel" hidden></div>
+    <div class="pane" id="pane-info" role="tabpanel" hidden></div>
+    <div class="pane" id="pane-hours" role="tabpanel" hidden></div>
+    <div class="pane" id="pane-backup" role="tabpanel" hidden></div>
+  </section>
+</main>
+
+<div class="savebar" id="savebar" hidden>
+  <div class="savein">
+    <span id="save-status" role="status">Tudo publicado ✓</span>
+    <div class="actions">
+      <button class="btn btn-ghost" type="button" id="btn-discard" disabled>Descartar</button>
+      <button class="btn btn-primary" type="button" id="btn-save" disabled>Salvar e publicar</button>
+    </div>
+  </div>
+</div>
+
+<div id="toasts" aria-live="polite"></div>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="card">
+    <h2 id="modal-title"></h2>
+    <p id="modal-msg" class="muted"></p>
+    <div class="actions"><button class="btn btn-ghost" type="button" id="modal-cancel">Cancelar</button><button class="btn btn-danger" type="button" id="modal-ok">Confirmar</button></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var CFG = window.RECANTO_CONFIG || {};
+  var EMBED = window.__EMBED__ || null;
+  var SDK_URL = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+  var ZIP_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+  var LIM = { image: 1600, logo: 512, videoMB: 45, items: 24 };
+  var DAYS = [[1, 'Segunda'], [2, 'Terça'], [3, 'Quarta'], [4, 'Quinta'], [5, 'Sexta'], [6, 'Sábado'], [0, 'Domingo']];
+  var TABS = [['media', 'Fotos e vídeos'], ['logo', 'Logomarca'], ['info', 'Informações'], ['hours', 'Horários'], ['backup', 'Backup']];
+  var S = { user: null, data: null, saved: null, base: null, trash: [], tab: 'media', pending: [], saving: false, recovery: false };
+  var B = null;
+
+  /* ---------- Utilidades ---------- */
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return [].slice.call((r || document).querySelectorAll(s)); }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function append(el, c) {
+    if (c == null || c === false) return;
+    if (Array.isArray(c)) c.forEach(function (x) { append(el, x); });
+    else if (typeof c === 'string' || typeof c === 'number') el.appendChild(document.createTextNode(String(c)));
+    else el.appendChild(c);
+  }
+  function h(tag, props) {
+    var el = document.createElement(tag);
+    props = props || {};
+    Object.keys(props).forEach(function (k) {
+      var v = props[k];
+      if (v == null || v === false) return;
+      if (k === 'class') el.className = v;
+      else if (k === 'text') el.textContent = v;
+      else if (k === 'value') el.value = v;
+      else if (k.slice(0, 2) === 'on') el.addEventListener(k.slice(2), v);
+      else el.setAttribute(k, v === true ? '' : v);
+    });
+    for (var i = 2; i < arguments.length; i++) append(el, arguments[i]);
+    return el;
+  }
+  function abs(u) { u = String(u || ''); return /^(https?:|data:|blob:|\/)/i.test(u) ? u : '../' + u; }
+  function digits(v) { return String(v == null ? '' : v).replace(/\D/g, ''); }
+  function str(v, max) { return String(v == null ? '' : v).slice(0, max || 500); }
+  function toMin(t) { var p = String(t).split(':'); return (+p[0]) * 60 + (+p[1]); }
+  function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+  function timeout(ms) { return new Promise(function (_, rej) { setTimeout(function () { rej(new Error('tempo esgotado')); }, ms); }); }
+  function loadScript(url, globalName) {
+    return new Promise(function (res, rej) {
+      if (globalName && window[globalName]) return res();
+      var s = document.createElement('script'); s.src = url; s.async = true;
+      s.onload = function () { res(); }; s.onerror = function () { rej(new Error('Falha ao carregar ' + url)); };
+      document.head.appendChild(s);
+    });
+  }
+  function toast(msg, kind) {
+    var t = h('div', { class: 'toast ' + (kind || ''), text: msg });
+    $('#toasts').appendChild(t);
+    setTimeout(function () { t.classList.add('out'); }, kind === 'err' ? 7000 : 3800);
+    setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, kind === 'err' ? 7600 : 4400);
+  }
+  function setMsg(id, text, kind) { var e = $('#' + id); e.textContent = text || ''; e.className = 'msg ' + (kind || ''); }
+  function askConfirm(title, msg, okLabel) {
+    return new Promise(function (res) {
+      var m = $('#modal'), ok = $('#modal-ok'), cancel = $('#modal-cancel');
+      $('#modal-title').textContent = title; $('#modal-msg').textContent = msg; ok.textContent = okLabel || 'Confirmar';
+      m.hidden = false; cancel.focus();
+      function done(v) { m.hidden = true; ok.onclick = null; cancel.onclick = null; document.removeEventListener('keydown', esc); res(v); }
+      function esc(e) { if (e.key === 'Escape') done(false); }
+      document.addEventListener('keydown', esc);
+      ok.onclick = function () { done(true); }; cancel.onclick = function () { done(false); };
+    });
+  }
+  function friendly(e) {
+    var m = String((e && e.message) || e || '');
+    if (/Invalid login credentials/i.test(m)) return 'E-mail ou senha incorretos.';
+    if (/JWT|expired|not authenticated|401/i.test(m)) return 'Sua sessão expirou. Saia e entre novamente.';
+    if (/row-level security|permission|403|violates/i.test(m)) return 'Sem permissão. Confira se o seu e-mail está cadastrado como administrador.';
+    if (/Failed to fetch|NetworkError|Load failed|network/i.test(m)) return 'Sem conexão com a internet. Tente novamente.';
+    if (/rate limit|too many/i.test(m)) return 'Muitas tentativas. Aguarde alguns minutos e tente de novo.';
+    return 'Algo deu errado: ' + m;
+  }
+
+  /* ---------- Modelo de dados ---------- */
+  function normalize(raw) {
+    raw = raw && typeof raw === 'object' ? raw : {};
+    var b = raw.brand || {}, c = raw.contact || {}, hr = raw.hero || {}, f = raw.facade || {}, hs = raw.hours || {};
+    var d = {
+      version: 1,
+      updatedAt: str(raw.updatedAt, 40),
+      brand: { logo: str(b.logo, 3000000) },
+      contact: { whatsapp: digits(c.whatsapp).slice(0, 15), instagram: str(c.instagram, 60).replace(/^@/, '').replace(/[^\w.]/g, '') },
+      hero: { title: str(hr.title, 120), lead: str(hr.lead, 400) },
+      facade: { src: str(f.src, 3000000), alt: str(f.alt, 160), caption: str(f.caption, 60) },
+      gallery: [], hours: {}
+    };
+    (Array.isArray(raw.gallery) ? raw.gallery : []).slice(0, LIM.items).forEach(function (it) {
+      if (!it || !it.src) return;
+      d.gallery.push({
+        type: it.type === 'video' ? 'video' : 'image', src: str(it.src, 3000000), poster: str(it.poster, 3000000),
+        alt: str(it.alt, 160), caption: str(it.caption, 60), focus: /^(top|center|bottom)$/.test(it.focus) ? it.focus : 'center'
+      });
+    });
+    for (var k = 0; k <= 6; k++) {
+      var arr = Array.isArray(hs[k]) ? hs[k] : [];
+      d.hours[k] = arr.filter(function (s) { return Array.isArray(s) && /^\d\d:\d\d$/.test(s[0]) && /^\d\d:\d\d$/.test(s[1]); }).slice(0, 2).map(function (s) { return [s[0], s[1]]; });
+    }
+    return d;
+  }
+  function strip(d) { var c = clone(d); delete c.updatedAt; return c; }
+  function isDirty() { return JSON.stringify(strip(S.data)) !== JSON.stringify(strip(S.saved)); }
+
+  /* ---------- Serviços (Supabase e modo demonstração) ---------- */
+  var Supa = {
+    name: 'supabase',
+    init: async function () {
+      await loadScript(SDK_URL, 'supabase');
+      this.sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } });
+    },
+    onAuth: function (cb) { this.sb.auth.onAuthStateChange(function (ev, ses) { cb(ev, ses); }); },
+    session: async function () { var r = await this.sb.auth.getSession(); return r.data && r.data.session; },
+    signIn: async function (email, pass) { var r = await this.sb.auth.signInWithPassword({ email: email, password: pass }); if (r.error) throw r.error; return r.data.session; },
+    signOut: async function () { await this.sb.auth.signOut(); },
+    reset: async function (email) { var r = await this.sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname }); if (r.error) throw r.error; },
+    setPassword: async function (pass) { var r = await this.sb.auth.updateUser({ password: pass }); if (r.error) throw r.error; },
+    isAdmin: async function () { var r = await this.sb.from('admins').select('email').limit(1); return !r.error && !!r.data && r.data.length > 0; },
+    load: async function () { var r = await this.sb.from('site_content').select('data').eq('id', 1).maybeSingle(); if (r.error) throw r.error; return r.data ? r.data.data : null; },
+    save: async function (data) { var r = await this.sb.from('site_content').upsert({ id: 1, data: data, updated_at: new Date().toISOString() }); if (r.error) throw r.error; },
+    upload: async function (blob, path, type) {
+      var st = this.sb.storage.from('media');
+      var r = await st.upload(path, blob, { contentType: type, cacheControl: '31536000', upsert: false });
+      if (r.error) throw r.error;
+      return st.getPublicUrl(path).data.publicUrl;
+    },
+    remove: async function (paths) { if (paths.length) await this.sb.storage.from('media').remove(paths); },
+    pathOf: function (url) { var m = String(url).match(/\/storage\/v1\/object\/public\/media\/(.+?)(\?.*)?$/); return m ? decodeURIComponent(m[1]) : null; }
+  };
+  var Demo = {
+    name: 'demo', store: null, user: null,
+    init: async function () {}, onAuth: function () {},
+    session: async function () { return this.user ? { user: this.user } : null; },
+    signIn: async function (email, pass) { if (!email || !pass) throw new Error('Preencha e-mail e senha.'); this.user = { email: email }; return { user: this.user }; },
+    signOut: async function () { this.user = null; }, reset: async function () {}, setPassword: async function () {},
+    isAdmin: async function () { return true; },
+    load: async function () { return this.store; },
+    save: async function (d) { this.store = clone(d); },
+    upload: async function (blob) {
+      if (/^video\//.test(blob.type)) return URL.createObjectURL(blob);
+      return await new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = rej; r.readAsDataURL(blob); });
+    },
+    remove: async function () {}, pathOf: function () { return null; }
+  };
+
+  /* ---------- Imagens e vídeos ---------- */
+  async function processImage(file, max, q) {
+    if (!/^image\//.test(file.type || '') && !/\.(jpe?g|png|webp|gif|heic|heif)$/i.test(file.name || '')) throw new Error('Este arquivo não é uma imagem. Use JPG, PNG ou WebP.');
+    var bmp = null;
+    try {
+      if (window.createImageBitmap) {
+        try { bmp = await Promise.race([createImageBitmap(file, { imageOrientation: 'from-image' }), timeout(20000)]); }
+        catch (e1) { bmp = await Promise.race([createImageBitmap(file), timeout(20000)]); }
+      }
+    } catch (e) { bmp = null; }
+    if (!bmp) throw new Error('Não consegui abrir esta imagem. Tente um arquivo JPG, PNG ou WebP.');
+    var w = bmp.width, hh = bmp.height, sc = Math.min(1, max / Math.max(w, hh));
+    var c = document.createElement('canvas'); c.width = Math.round(w * sc); c.height = Math.round(hh * sc);
+    var ctx = c.getContext && c.getContext('2d');
+    if (!ctx) return { blob: file, type: file.type || 'image/jpeg', ext: (file.name.split('.').pop() || 'jpg').toLowerCase() };
+    ctx.drawImage(bmp, 0, 0, c.width, c.height);
+    if (bmp.close) bmp.close();
+    var blob = await new Promise(function (r) { c.toBlob(r, 'image/webp', q || 0.82); });
+    if (!blob || blob.type !== 'image/webp') blob = await new Promise(function (r) { c.toBlob(r, 'image/jpeg', 0.85); });
+    if (!blob) throw new Error('Não consegui preparar esta imagem.');
+    return { blob: blob, type: blob.type, ext: blob.type === 'image/webp' ? 'webp' : 'jpg' };
+  }
+  function makePoster(file) {
+    return new Promise(function (res) {
+      var v = document.createElement('video'), u, done = false;
+      function fin(b) { if (done) return; done = true; try { URL.revokeObjectURL(u); } catch (e) {} res(b); }
+      try {
+        u = URL.createObjectURL(file); v.muted = true; v.playsInline = true; v.preload = 'metadata';
+        v.onloadeddata = function () { try { v.currentTime = Math.min(0.6, (v.duration || 1) / 3); } catch (e) { fin(null); } };
+        v.onseeked = function () {
+          try {
+            var sc = Math.min(1, 1280 / (v.videoWidth || 1280)), c = document.createElement('canvas');
+            c.width = Math.round((v.videoWidth || 1280) * sc); c.height = Math.round((v.videoHeight || 720) * sc);
+            c.getContext('2d').drawImage(v, 0, 0, c.width, c.height);
+            c.toBlob(function (b) { fin(b && b.type === 'image/webp' ? b : null); }, 'image/webp', 0.8);
+          } catch (e) { fin(null); }
+        };
+        v.onerror = function () { fin(null); };
+        setTimeout(function () { fin(null); }, 10000);
+        v.src = u;
+      } catch (e) { fin(null); }
+    });
+  }
+  function withPending(label, fn) {
+    var pd = { label: label };
+    S.pending.push(pd); if (S.tab === 'media') renderMedia();
+    return fn().finally(function () { S.pending.splice(S.pending.indexOf(pd), 1); if (S.tab === 'media') renderMedia(); });
+  }
+  async function uploadImage(file, max, folder) {
+    var p = await processImage(file, max);
+    return await B.upload(p.blob, folder + '/' + uid() + '.' + p.ext, p.type);
+  }
+  function trash(url) { if (url) S.trash.push(url); }
+
+  async function addPhotos(files) {
+    for (var i = 0; i < files.length; i++) {
+      var f = files[i];
+      if (S.data.gallery.length >= LIM.items) { toast('O limite é de ' + LIM.items + ' itens na galeria. Remova algum para adicionar outro.', 'err'); break; }
+      try {
+        await withPending('Enviando ' + f.name + '…', async function () {
+          var url = await uploadImage(f, LIM.image, 'gallery');
+          S.data.gallery.push({ type: 'image', src: url, poster: '', alt: '', caption: '', focus: 'center' });
+        });
+        touch();
+      } catch (e) { toast(f.name + ': ' + friendly(e), 'err'); }
+    }
+    renderMedia();
+  }
+  async function sendVideo(f) {
+    var mb = f.size / 1048576;
+    if (!/^video\//.test(f.type || '') && !/\.(mp4|webm|mov)$/i.test(f.name || '')) throw new Error('Este arquivo não é um vídeo. Use MP4 (ideal), WebM ou MOV.');
+    if (mb > LIM.videoMB) throw new Error('Este vídeo tem ' + mb.toFixed(0) + ' MB e o limite é ' + LIM.videoMB + ' MB. Grave um trecho mais curto ou reduza a qualidade.');
+    var poster = await makePoster(f), st = uid();
+    var ext = ((f.name.split('.').pop() || 'mp4').toLowerCase());
+    var type = f.type || ('video/' + (ext === 'mov' ? 'quicktime' : ext));
+    var src = await B.upload(f, 'gallery/' + st + '.' + ext, type);
+    var pos = poster ? await B.upload(poster, 'gallery/' + st + '-poster.webp', 'image/webp') : '';
+    return { src: src, poster: pos, ext: ext };
+  }
+  async function addVideo(files) {
+    var f = files[0];
+    if (S.data.gallery.length >= LIM.items) { toast('O limite é de ' + LIM.items + ' itens na galeria.', 'err'); return; }
+    try {
+      await withPending('Enviando vídeo… isso pode levar alguns minutos', async function () {
+        var v = await sendVideo(f);
+        S.data.gallery.push({ type: 'video', src: v.src, poster: v.poster, alt: '', caption: '', focus: 'center' });
+        if (v.ext === 'mov') toast('Vídeos .mov do iPhone podem não tocar em todos os aparelhos. Prefira MP4.', 'err');
+      });
+      touch();
+    } catch (e) { toast(friendly(e), 'err'); }
+  }
+  async function replaceItem(it, files) {
+    var f = files[0];
+    try {
+      await withPending('Trocando arquivo…', async function () {
+        if (it.type === 'video') { var v = await sendVideo(f); trash(it.src); trash(it.poster); it.src = v.src; it.poster = v.poster; }
+        else { var u = await uploadImage(f, LIM.image, 'gallery'); trash(it.src); it.src = u; }
+      });
+      touch();
+    } catch (e) { toast(friendly(e), 'err'); }
+  }
+
+  /* ---------- Interface: componentes ---------- */
+  function fileButton(label, accept, multiple, handler, kind, small) {
+    var id = 'f' + uid();
+    var input = h('input', { type: 'file', accept: accept, multiple: multiple, class: 'sr-file', id: id, onchange: function () { var fl = [].slice.call(input.files); input.value = ''; if (fl.length) handler(fl); } });
+    var lab = h('label', { class: 'btn btn-' + kind + (small ? ' btn-sm' : ''), for: id }, label);
+    return h('span', { class: 'filebtn' }, input, lab);
+  }
+  function field(label, control, hint) { return h('label', { class: 'field' }, h('span', { text: label }), control, hint ? h('small', { text: hint }) : null); }
+  function textInput(obj, key, max, ph, type) {
+    return h('input', { type: type || 'text', value: obj[key] || '', maxlength: max, placeholder: ph || '', oninput: function (e) { obj[key] = e.target.value; touch(); } });
+  }
+
+  function mediaCard(it, i) {
+    var g = S.data.gallery, pos = { top: '50% 25%', center: '50% 50%', bottom: '50% 75%' }[it.focus] || '50% 50%';
+    var thumb = h('div', { class: 'thumb' },
+      it.type === 'video'
+        ? (it.poster ? h('img', { src: abs(it.poster), alt: '' }) : h('video', { src: abs(it.src) + '#t=0.1', preload: 'metadata', muted: true, playsinline: true }))
+        : h('img', { src: abs(it.src), alt: it.alt || '', style: 'object-position:' + pos }),
+      it.type === 'video' ? h('span', { class: 'badge', text: 'Vídeo' }) : null,
+      h('span', { class: 'pos', text: (i + 1) + ' de ' + g.length })
+    );
+    var focus = it.type === 'video' ? null : field('Parte da foto a mostrar', h('select', { onchange: function (e) { it.focus = e.target.value; touch(); renderMedia(); } },
+      h('option', { value: 'top', selected: it.focus === 'top' }, 'Parte de cima'),
+      h('option', { value: 'center', selected: it.focus === 'center' }, 'Meio'),
+      h('option', { value: 'bottom', selected: it.focus === 'bottom' }, 'Parte de baixo')
+    ), 'Use quando a foto for cortada e algo importante ficar de fora.');
+    return h('div', { class: 'mcard' }, thumb, h('div', { class: 'body' },
+      field('Legenda (aparece sobre a foto)', textInput(it, 'caption', 60, 'Ex.: O nosso cantinho')),
+      field('Descrição para quem não enxerga a imagem', textInput(it, 'alt', 160, 'Ex.: Balcão de madeira com vitrine de bolos')),
+      focus,
+      h('div', { class: 'row' },
+        h('button', { type: 'button', class: 'btn btn-ghost btn-sm', disabled: i === 0, 'aria-label': 'Mover para antes', onclick: function () { g.splice(i - 1, 0, g.splice(i, 1)[0]); touch(); renderMedia(); } }, '← Antes'),
+        h('button', { type: 'button', class: 'btn btn-ghost btn-sm', disabled: i === g.length - 1, 'aria-label': 'Mover para depois', onclick: function () { g.splice(i + 1, 0, g.splice(i, 1)[0]); touch(); renderMedia(); } }, 'Depois →')
+      ),
+      h('div', { class: 'row' },
+        fileButton('Trocar', it.type === 'video' ? 'video/mp4,video/webm,video/quicktime' : 'image/*', false, function (fl) { replaceItem(it, fl); }, 'ghost', true),
+        h('button', { type: 'button', class: 'btn btn-danger btn-sm', onclick: async function () {
+          var ok = await askConfirm('Remover ' + (it.type === 'video' ? 'este vídeo' : 'esta foto') + '?', 'Ela sai da página quando você clicar em "Salvar e publicar".', 'Remover');
+          if (ok) { g.splice(i, 1); trash(it.src); trash(it.poster); touch(); renderMedia(); }
+        } }, 'Remover')
+      )
+    ));
+  }
+
+  function renderMedia() {
+    var p = $('#pane-media'); p.textContent = '';
+    var g = S.data.gallery;
+    p.appendChild(h('div', { class: 'pane-head' }, h('h2', { text: 'Fotos e vídeos do ambiente' }),
+      h('p', { class: 'muted', text: 'Aparecem na seção "Um recanto para o seu café". A ordem daqui é a ordem no site. As fotos são reduzidas automaticamente para a página carregar rápido.' })));
+    p.appendChild(h('div', { class: 'actions' },
+      fileButton('Adicionar fotos', 'image/*', true, addPhotos, 'primary'),
+      fileButton('Adicionar vídeo', 'video/mp4,video/webm,video/quicktime', false, addVideo, 'ghost'),
+      h('span', { class: 'muted', text: 'Vídeos: MP4, até ' + LIM.videoMB + ' MB.' })
+    ));
+    var grid = h('div', { class: 'media-grid', id: 'media-grid' });
+    g.forEach(function (it, i) { grid.appendChild(mediaCard(it, i)); });
+    S.pending.forEach(function (pd) { grid.appendChild(h('div', { class: 'mcard pending' }, h('div', { class: 'spinner', 'aria-hidden': 'true' }), h('p', { text: pd.label }))); });
+    if (!g.length && !S.pending.length) grid.appendChild(h('p', { class: 'empty', text: 'Nenhuma foto ainda. Clique em "Adicionar fotos" para começar.' }));
+    p.appendChild(grid);
+
+    var fa = S.data.facade;
+    p.appendChild(h('div', { class: 'pane-head' }, h('h2', { text: 'Foto da fachada' }), h('p', { class: 'muted', text: 'Aparece em "Venha tomar um café", para ajudar as pessoas a reconhecerem o local.' })));
+    p.appendChild(h('div', { class: 'card single' },
+      h('div', { class: 'thumb' }, fa.src ? h('img', { src: abs(fa.src), alt: fa.alt || '' }) : null),
+      h('div', { class: 'body', style: 'display:grid;gap:.7rem' },
+        field('Legenda', textInput(fa, 'caption', 60, 'Ex.: Procure a fachada amarela.')),
+        field('Descrição para quem não enxerga a imagem', textInput(fa, 'alt', 160, 'Ex.: Fachada amarela com letreiro marrom')),
+        h('div', { class: 'row' }, fileButton('Trocar foto da fachada', 'image/*', false, async function (fl) {
+          try { await withPending('Enviando foto da fachada…', async function () { var u = await uploadImage(fl[0], LIM.image, 'gallery'); trash(fa.src); fa.src = u; }); touch(); }
+          catch (e) { toast(friendly(e), 'err'); }
+        }, 'ghost', true))
+      )
+    ));
+  }
+
+  function renderLogo() {
+    var p = $('#pane-logo'); p.textContent = '';
+    var lg = S.data.brand.logo;
+    p.appendChild(h('div', { class: 'pane-head' }, h('h2', { text: 'Logomarca' }), h('p', { class: 'muted', text: 'Aparece no topo e no rodapé da página e na aba do navegador. Prefira uma imagem quadrada, com pelo menos 400 pixels.' })));
+    p.appendChild(h('div', { class: 'logo-prev' },
+      h('div', { style: 'background:#4B2D17' }, lg ? h('img', { src: abs(lg), alt: 'Logomarca atual' }) : null),
+      h('div', { style: 'background:#F3E7D8' }, lg ? h('img', { src: abs(lg), alt: '' }) : null)
+    ));
+    p.appendChild(h('div', { class: 'actions' },
+      fileButton('Trocar logomarca', 'image/*', false, async function (fl) {
+        try { await withLogo(fl[0]); } catch (e) { toast(friendly(e), 'err'); }
+      }, 'primary'),
+      S.base && S.base.brand.logo && S.base.brand.logo !== lg ? h('button', { type: 'button', class: 'btn btn-ghost', onclick: function () { trash(lg); S.data.brand.logo = S.base.brand.logo; touch(); renderLogo(); } }, 'Voltar para a logomarca original') : null
+    ));
+  }
+  async function withLogo(file) {
+    var p = $('#pane-logo'); p.appendChild(h('div', { class: 'center', id: 'logo-wait' }, h('div', { class: 'spinner' }), h('p', { text: 'Enviando logomarca…' })));
+    try { var u = await uploadImage(file, LIM.logo, 'brand'); trash(S.data.brand.logo); S.data.brand.logo = u; touch(); }
+    finally { renderLogo(); }
+  }
+
+  function renderInfo() {
+    var p = $('#pane-info'); p.textContent = '';
+    var d = S.data;
+    p.appendChild(h('div', { class: 'pane-head' }, h('h2', { text: 'Informações da página' }), h('p', { class: 'muted', text: 'Textos e contatos que aparecem no site.' })));
+    var wa = h('input', { type: 'tel', inputmode: 'numeric', value: fmtPhone(d.contact.whatsapp), placeholder: '(98) 98535-3197', autocomplete: 'off',
+      oninput: function (e) { var dg = digits(e.target.value).slice(0, 13); d.contact.whatsapp = dg.length >= 10 && dg.slice(0, 2) !== '55' ? '55' + dg : dg; touch(); },
+      onblur: function (e) { e.target.value = fmtPhone(d.contact.whatsapp); } });
+    var counter = h('small', { class: 'muted', text: d.hero.lead.length + '/400' });
+    var lead = h('textarea', { maxlength: 400, value: d.hero.lead, oninput: function (e) { d.hero.lead = e.target.value; counter.textContent = e.target.value.length + '/400'; touch(); } });
+    p.appendChild(h('div', { class: 'card', style: 'display:grid;gap:1rem' },
+      field('Título principal', textInput(d.hero, 'title', 120, 'Ex.: Café bom pede boa companhia.')),
+      h('label', { class: 'field' }, h('span', { text: 'Texto de boas-vindas' }), lead, counter),
+      field('WhatsApp', wa, 'Com DDD. O botão "Chamar no WhatsApp" só aparece se houver um número. Deixe em branco para esconder.'),
+      field('Instagram', h('input', { type: 'text', value: d.contact.instagram ? '@' + d.contact.instagram : '', placeholder: '@recanto_7cafeteria', autocapitalize: 'none', autocomplete: 'off',
+        oninput: function (e) { d.contact.instagram = e.target.value.replace(/^@/, '').replace(/[^\w.]/g, '').slice(0, 60); touch(); } }), 'Somente o nome de usuário. Deixe em branco para esconder os botões do Instagram.')
+    ));
+  }
+  function fmtPhone(v) {
+    var dg = digits(v); if (dg.slice(0, 2) === '55' && dg.length > 11) dg = dg.slice(2);
+    if (dg.length === 11) return '(' + dg.slice(0, 2) + ') ' + dg.slice(2, 7) + '-' + dg.slice(7);
+    if (dg.length === 10) return '(' + dg.slice(0, 2) + ') ' + dg.slice(2, 6) + '-' + dg.slice(6);
+    return dg;
+  }
+
+  function renderHours() {
+    var p = $('#pane-hours'); p.textContent = '';
+    p.appendChild(h('div', { class: 'pane-head' }, h('h2', { text: 'Horário de funcionamento' }), h('p', { class: 'muted', text: 'Marque os dias em que o Recanto abre. A página mostra "Aberto agora" ou "Fechado agora" automaticamente.' })));
+    var box = h('div', { class: 'card' });
+    DAYS.forEach(function (dv) {
+      var day = dv[0], slots = S.data.hours[day];
+      var cbx = h('input', { type: 'checkbox', checked: slots.length > 0, onchange: function (e) { S.data.hours[day] = e.target.checked ? [['07:30', '11:00']] : []; touch(); renderHours(); } });
+      var col = h('div', { class: 'slots' });
+      if (!slots.length) col.appendChild(h('span', { class: 'closed', text: 'Fechado' }));
+      slots.forEach(function (sl, i) {
+        col.appendChild(h('div', { class: 'slot' },
+          h('span', { text: i ? 'e das' : 'Das' }),
+          h('input', { type: 'time', value: sl[0], 'aria-label': dv[1] + ', abre', oninput: function (e) { sl[0] = e.target.value; touch(); } }),
+          h('span', { text: 'às' }),
+          h('input', { type: 'time', value: sl[1], 'aria-label': dv[1] + ', fecha', oninput: function (e) { sl[1] = e.target.value; touch(); } }),
+          i ? h('button', { type: 'button', class: 'btn btn-ghost btn-sm', 'aria-label': 'Remover segundo período', onclick: function () { slots.splice(1, 1); touch(); renderHours(); } }, 'Remover') : null
+        ));
+      });
+      var acts = h('div', { class: 'row', style: 'display:flex;gap:.5rem;flex-wrap:wrap' });
+      if (slots.length === 1) acts.appendChild(h('button', { type: 'button', class: 'btn btn-ghost btn-sm', onclick: function () { slots.push(['15:00', '18:30']); touch(); renderHours(); } }, '+ Adicionar outro período'));
+      if (slots.length) acts.appendChild(h('button', { type: 'button', class: 'btn btn-ghost btn-sm', onclick: function () { DAYS.forEach(function (o) { S.data.hours[o[0]] = clone(slots); }); touch(); renderHours(); toast('Horário copiado para todos os dias.', 'ok'); } }, 'Copiar para todos os dias'));
+      col.appendChild(acts);
+      box.appendChild(h('div', { class: 'hrow' }, h('label', { class: 'chk' }, cbx, dv[1]), col));
+    });
+    p.appendChild(box);
+  }
+
+  function renderBackup() {
+    var p = $('#pane-backup'); p.textContent = '';
+    p.appendChild(h('div', { class: 'pane-head' }, h('h2', { text: 'Backup e arquivo para o GitHub' }),
+      h('p', { class: 'muted', text: 'Tudo o que você publica aqui já aparece no site na hora. Estes arquivos servem para guardar uma cópia no GitHub, que também mantém a página funcionando se o serviço de armazenamento ficar fora do ar.' })));
+    var status = h('p', { class: 'msg', id: 'backup-msg', role: 'status' });
+    p.appendChild(h('div', { class: 'card', style: 'display:grid;gap:1rem' },
+      h('h3', { text: 'Baixar cópia' }),
+      h('div', { class: 'actions' },
+        h('button', { type: 'button', class: 'btn btn-primary', onclick: function () { download('content.json', new Blob([JSON.stringify(exportData(S.data), null, 2)], { type: 'application/json' })); } }, 'Baixar content.json'),
+        h('button', { type: 'button', class: 'btn btn-ghost', id: 'btn-zip', onclick: function (e) { exportZip(e.currentTarget); } }, 'Baixar pacote completo (.zip)')
+      ),
+      status,
+      h('p', { class: 'muted', text: 'O pacote traz o content.json e as fotos e vídeos em pastas, prontos para enviar ao GitHub.' }),
+      h('h3', { text: 'Como enviar ao GitHub' }),
+      h('ol', { class: 'steps' },
+        h('li', { text: 'Descompacte o arquivo .zip baixado.' }),
+        h('li', { text: 'No repositório do site, clique em Add file e depois Upload files.' }),
+        h('li', { text: 'Arraste o content.json e as pastas images e videos, e confirme em Commit changes.' })
+      )
+    ));
+    p.appendChild(h('div', { class: 'card', style: 'display:grid;gap:1rem' },
+      h('h3', { text: 'Restaurar de um arquivo' }),
+      h('p', { class: 'muted', text: 'Carregue um content.json salvo antes. Você poderá revisar tudo e só vai valer depois de clicar em "Salvar e publicar".' }),
+      h('div', { class: 'actions' }, fileButton('Carregar content.json', 'application/json,.json', false, importJson, 'ghost'))
+    ));
+  }
+  function download(name, blob) {
+    var url = URL.createObjectURL(blob), a = h('a', { href: url, download: name });
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+  }
+  function exportData(d) { var c = clone(d); c.updatedAt = new Date().toISOString(); return c; }
+  async function importJson(files) {
+    try {
+      var txt = await files[0].text(), raw = JSON.parse(txt), d = normalize(raw);
+      if (!d.gallery.length && !d.brand.logo && !d.hero.title) throw new Error('Este arquivo não parece ser um content.json do site.');
+      S.data = d; touch(); renderPane('backup'); toast('Arquivo carregado. Revise e clique em "Salvar e publicar".', 'ok');
+    } catch (e) { toast('Não consegui ler o arquivo: ' + e.message, 'err'); }
+  }
+  async function exportZip(btn) {
+    var msg = $('#backup-msg'); btn.disabled = true; setMsg('backup-msg', 'Preparando o pacote…', '');
+    try {
+      await loadScript(ZIP_URL, 'JSZip');
+      var zip = new window.JSZip(), data = exportData(S.data), map = {}, names = {}, tasks = [];
+      function place(u, folder) {
+        if (!u) return u;
+        if (map[u]) return map[u];
+        var m = String(u).split('?')[0].match(/([^\/]+)\.(\w{2,5})$/), base = m ? m[1] : 'arquivo', ext = m ? m[2] : 'bin';
+        if (/^(data|blob):/.test(u)) { base = 'midia'; ext = /video/.test(u) ? 'mp4' : 'webp'; }
+        var n = base + '.' + ext, i = 1; while (names[folder + '/' + n]) { n = base + '-' + (++i) + '.' + ext; }
+        names[folder + '/' + n] = true; map[u] = folder + '/' + n; tasks.push({ u: u, path: map[u] }); return map[u];
+      }
+      data.brand.logo = place(data.brand.logo, 'images');
+      data.facade.src = place(data.facade.src, 'images');
+      data.gallery.forEach(function (it) { it.src = place(it.src, it.type === 'video' ? 'videos' : 'images'); it.poster = place(it.poster, 'images'); });
+      for (var i = 0; i < tasks.length; i++) {
+        setMsg('backup-msg', 'Baixando arquivos ' + (i + 1) + ' de ' + tasks.length + '…', '');
+        var r = await fetch(abs(tasks[i].u)); if (!r.ok) throw new Error('Não consegui baixar ' + tasks[i].path);
+        zip.file(tasks[i].path, await r.blob());
+      }
+      zip.file('content.json', JSON.stringify(data, null, 2));
+      var blob = await zip.generateAsync({ type: 'blob' });
+      download('recanto-7-atualizacao.zip', blob); setMsg('backup-msg', 'Pronto! O arquivo foi baixado.', 'ok');
+    } catch (e) { setMsg('backup-msg', friendly(e), 'err'); }
+    finally { btn.disabled = false; }
+  }
+
+  /* ---------- Painel: abas, salvar ---------- */
+  function renderPane(k) { ({ media: renderMedia, logo: renderLogo, info: renderInfo, hours: renderHours, backup: renderBackup })[k](); }
+  function setTab(k) {
+    S.tab = k;
+    TABS.forEach(function (t) { var b = $('#tab-' + t[0]); b.setAttribute('aria-selected', String(t[0] === k)); b.tabIndex = t[0] === k ? 0 : -1; });
+    $$('.pane').forEach(function (p) { p.hidden = p.id !== 'pane-' + k; });
+    renderPane(k);
+  }
+  function buildTabs() {
+    var box = $('#tabs'); box.textContent = '';
+    TABS.forEach(function (t) {
+      box.appendChild(h('button', { type: 'button', class: 'tab', role: 'tab', id: 'tab-' + t[0], 'aria-controls': 'pane-' + t[0], 'aria-selected': 'false', onclick: function () { setTab(t[0]); },
+        onkeydown: function (e) { var i = TABS.findIndex(function (x) { return x[0] === S.tab; }); if (e.key === 'ArrowRight') { setTab(TABS[(i + 1) % TABS.length][0]); $('#tab-' + S.tab).focus(); } if (e.key === 'ArrowLeft') { setTab(TABS[(i + TABS.length - 1) % TABS.length][0]); $('#tab-' + S.tab).focus(); } } }, t[1]));
+    });
+  }
+  function touch() {
+    var dirty = isDirty();
+    $('#btn-save').disabled = !dirty || S.saving; $('#btn-discard').disabled = !dirty || S.saving;
+    var st = $('#save-status');
+    st.textContent = S.saving ? 'Publicando…' : dirty ? 'Há alterações ainda não publicadas' : 'Tudo publicado ✓';
+    st.className = dirty ? 'dirty' : 'ok';
+  }
+  function validate() {
+    var d = S.data, errs = [];
+    if (d.contact.whatsapp && (d.contact.whatsapp.length < 12 || d.contact.whatsapp.length > 13)) errs.push(['info', 'Confira o WhatsApp: informe o DDD e o número, por exemplo (98) 98535-3197.']);
+    DAYS.forEach(function (dv) {
+      var s = d.hours[dv[0]];
+      s.forEach(function (sl, i) {
+        if (!sl[0] || !sl[1] || toMin(sl[1]) <= toMin(sl[0])) errs.push(['hours', dv[1] + ': o horário de fechar precisa ser depois do de abrir.']);
+        else if (i === 1 && toMin(sl[0]) <= toMin(s[0][1])) errs.push(['hours', dv[1] + ': o segundo período precisa começar depois do primeiro.']);
+      });
+    });
+    if (!d.brand.logo) errs.push(['logo', 'Escolha uma logomarca antes de publicar.']);
+    return errs;
+  }
+  async function cleanTrash() {
+    var keep = {}; var d = S.data;
+    [d.brand.logo, d.facade.src].concat(d.gallery.map(function (i) { return i.src; }), d.gallery.map(function (i) { return i.poster; })).forEach(function (u) { if (u) keep[u] = 1; });
+    var paths = S.trash.filter(function (u) { return !keep[u]; }).map(function (u) { return B.pathOf(u); }).filter(Boolean);
+    S.trash = [];
+    try { await B.remove(paths); } catch (e) {}
+  }
+  async function save() {
+    var errs = validate();
+    if (errs.length) { setTab(errs[0][0]); toast(errs[0][1], 'err'); return; }
+    S.saving = true; touch();
+    try {
+      var d = clone(S.data); d.updatedAt = new Date().toISOString();
+      await B.save(d);
+      S.data.updatedAt = d.updatedAt; S.saved = clone(S.data);
+      await cleanTrash();
+      toast('Publicado! As mudanças já estão no site.', 'ok');
+    } catch (e) { toast(friendly(e), 'err'); }
+    finally { S.saving = false; touch(); }
+  }
+
+  /* ---------- Telas e autenticação ---------- */
+  function show(name) {
+    $$('[data-screen]').forEach(function (s) { s.hidden = s.getAttribute('data-screen') !== name; });
+    var app = name === 'app';
+    $('#userbox').hidden = !app; $('#savebar').hidden = !app; document.body.classList.toggle('has-savebar', app);
+  }
+  function busy(btn, on, label) { btn.disabled = on; if (label) btn.textContent = label; }
+  async function loadBase() {
+    if (EMBED && EMBED.content) return normalize(EMBED.content);
+    try { var r = await fetch('../content.json?v=' + Date.now(), { cache: 'no-cache' }); if (r.ok) return normalize(await r.json()); } catch (e) {}
+    return normalize({});
+  }
+  async function enterApp(user) {
+    show('loading');
+    try {
+      if (!(await B.isAdmin(user.email))) { await B.signOut(); show('login'); setMsg('login-msg', 'Este e-mail não tem permissão de administrador.', 'err'); return; }
+      var remote = await B.load();
+      S.base = await loadBase();
+      S.user = user; S.data = normalize(remote || S.base); S.saved = clone(S.data); S.trash = []; S.pending = [];
+      $('#user-email').textContent = user.email;
+      buildTabs(); setTab('media'); touch(); show('app');
+    } catch (e) { $('#error-text').textContent = friendly(e); show('error'); }
+  }
+  function onAuthEvent(ev) {
+    if (ev === 'PASSWORD_RECOVERY') { S.recovery = true; show('recovery'); }
+    else if (ev === 'SIGNED_OUT' && !S.recovery) { S.user = null; show('login'); }
+  }
+  function bindForms() {
+    $$('[data-toggle]').forEach(function (b) {
+      b.addEventListener('click', function () { var i = $('#' + b.getAttribute('data-toggle')); var t = i.type === 'password'; i.type = t ? 'text' : 'password'; b.textContent = t ? 'Ocultar' : 'Mostrar'; b.setAttribute('aria-label', t ? 'Ocultar senha' : 'Mostrar senha'); });
+    });
+    $('#f-login').addEventListener('submit', async function (e) {
+      e.preventDefault(); var btn = $('#btn-login'), em = $('#in-email').value.trim(), pw = $('#in-pass').value;
+      if (!em || !pw) { setMsg('login-msg', 'Preencha o e-mail e a senha.', 'err'); return; }
+      busy(btn, true, 'Entrando…'); setMsg('login-msg', '');
+      try { var ses = await B.signIn(em, pw); $('#in-pass').value = ''; await enterApp(ses.user); }
+      catch (err) { setMsg('login-msg', friendly(err), 'err'); }
+      finally { busy(btn, false, 'Entrar'); }
+    });
+    $('#go-forgot').addEventListener('click', function () { $('#fg-email').value = $('#in-email').value; setMsg('forgot-msg', ''); show('forgot'); });
+    $('#back-login').addEventListener('click', function () { show('login'); });
+    $('#f-forgot').addEventListener('submit', async function (e) {
+      e.preventDefault(); var btn = $('#btn-forgot'), em = $('#fg-email').value.trim();
+      if (!/^\S+@\S+\.\S+$/.test(em)) { setMsg('forgot-msg', 'Informe um e-mail válido.', 'err'); return; }
+      busy(btn, true, 'Enviando…');
+      try { await B.reset(em); } catch (err) { if (/rate limit|too many/i.test(String(err && err.message))) { setMsg('forgot-msg', friendly(err), 'err'); busy(btn, false, 'Enviar link'); return; } }
+      setMsg('forgot-msg', 'Se este e-mail estiver cadastrado, você receberá um link em instantes. Confira também a caixa de spam.', 'ok');
+      busy(btn, false, 'Enviar link');
+    });
+    $('#f-recovery').addEventListener('submit', async function (e) {
+      e.preventDefault(); var btn = $('#btn-recovery'), a = $('#rc-pass').value, b = $('#rc-pass2').value;
+      if (a.length < 8) { setMsg('recovery-msg', 'A senha precisa ter pelo menos 8 caracteres.', 'err'); return; }
+      if (a !== b) { setMsg('recovery-msg', 'As senhas não são iguais.', 'err'); return; }
+      busy(btn, true, 'Salvando…');
+      try {
+        await B.setPassword(a); S.recovery = false; history.replaceState(null, '', location.pathname);
+        toast('Senha alterada com sucesso.', 'ok');
+        var ses = await B.session(); if (ses) await enterApp(ses.user); else show('login');
+      } catch (err) { setMsg('recovery-msg', friendly(err), 'err'); }
+      finally { busy(btn, false, 'Salvar nova senha'); }
+    });
+    $('#btn-logout').addEventListener('click', async function () {
+      if (isDirty() && !(await askConfirm('Sair sem publicar?', 'Você tem alterações que ainda não foram publicadas. Se sair agora, elas serão perdidas.', 'Sair mesmo assim'))) return;
+      await B.signOut(); S.user = null; show('login');
+    });
+    $('#btn-save').addEventListener('click', save);
+    $('#btn-discard').addEventListener('click', async function () {
+      if (await askConfirm('Descartar alterações?', 'Volta tudo para a última versão publicada.', 'Descartar')) { S.data = clone(S.saved); S.trash = []; touch(); renderPane(S.tab); }
+    });
+    $('#btn-retry').addEventListener('click', function () { boot(); });
+    window.addEventListener('beforeunload', function (e) { if (S.user && isDirty()) { e.preventDefault(); e.returnValue = ''; } });
+  }
+  var bound = false;
+  async function boot() {
+    show('loading');
+    if (!bound) { bindForms(); bound = true; }
+    S.recovery = /[#&?]type=recovery/.test(location.hash + location.search);
+    B = (CFG.supabaseUrl && CFG.supabaseAnonKey) ? Supa : Demo;
+    $('#demo-banner').hidden = B !== Demo;
+    try {
+      await B.init(); B.onAuth(onAuthEvent);
+      var ses = await B.session();
+      if (S.recovery) { if (ses) show('recovery'); else { setTimeout(function () { if (!$('[data-screen="recovery"]').hidden) return; show('login'); setMsg('login-msg', 'O link expirou. Peça um novo em "Esqueci minha senha".', 'err'); }, 4000); } }
+      else if (ses) await enterApp(ses.user); else show('login');
+    } catch (e) { $('#error-text').textContent = friendly(e); show('error'); }
+  }
+  window.__PAINEL__ = { S: S, boot: boot, normalize: normalize, Demo: Demo, validate: validate };
+  boot();
+})();
+</script>
+</body>
+</html>
